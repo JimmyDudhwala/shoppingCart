@@ -6,22 +6,27 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/cart",
+          element: <Cart />,
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/cart",
-        element: <Cart />,
-      },
-    ],
-  },
-]);
+    basename: "/shoppingCart", // Add this line
+  }
+);
 
 createRoot(document.querySelector("#root")).render(
   <Provider store={store}>
